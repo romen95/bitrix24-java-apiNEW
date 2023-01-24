@@ -13,9 +13,9 @@ public class ParamDealUtils {
     private final static String ID = "id";
     private final static String SPACE_PARAM = "%20";
 
-    public UriParamsCreator getMethod(Integer idContact) {
+    public UriParamsCreator getMethod(Integer idDeal) {
         UriParamsCreator params = new UriParamsCreator();
-        params.put(ID, idContact.toString());
+        params.put(ID, idDeal.toString());
         params.build();
         return params;
     }

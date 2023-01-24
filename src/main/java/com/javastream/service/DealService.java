@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.javastream.entity.Deal;
 import com.javastream.uriParamsCreator.UriParamsCreator;
 import com.javastream.utils.PushRunner;
-import com.javastream.utils.contact.ParamContactUtils;
+import com.javastream.utils.deal.ParamDealUtils;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +24,7 @@ public class DealService {
 
     public Deal get(Integer idDeal) {
         logger.info("Request: Get the deal by id: {}", idDeal);
-        UriParamsCreator params = new ParamContactUtils().getMethod(idDeal);
+        UriParamsCreator params = new ParamDealUtils().getMethod(idDeal);
         JSONObject jsonMain = PushRunner.get(params, GET_METHOD);
         JSONObject jsonResult = jsonMain.getJSONObject("result");
         Gson gson = new Gson();
