@@ -39,7 +39,7 @@ public class DealService {
         return gson.fromJson(jsonResult.toString(), Deal.class);
     }
 
-    public List<Lead> getAll() {
+    public List<Deal> getAll() {
         logger.info("Request: Get list of deals");
         UriParamsCreator params = new ParamDealUtils().getAllMethod();
         JSONObject json = PushRunner.get(params, LIST_METHOD);
