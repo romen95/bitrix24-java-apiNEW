@@ -52,14 +52,14 @@ public class DealService {
         return gson.fromJson(result.toString(), type);
     }
 
-    public List<String> getContactParams(Integer idDeal) {
-        logger.info("Request: Get the contact by deal's id: {}", idDeal);
+    public List<Contact> getContactFromDeal(Integer idDeal) {
+        logger.info("Request: Get the deal by id: {}", idDeal);
         UriParamsCreator params = new ParamDealUtils().getMethod(idDeal);
         JSONObject jsonMain = PushRunner.get(params, GET_CONTACT_METHOD);
         JSONObject jsonResult = jsonMain.getJSONObject("result");
         Gson gson = new Gson();
 
-        Type type = new TypeToken<ArrayList<String>>(){}.getType();
+        Type type = new TypeToken<ArrayList<Contact>>(){}.getType();
         return gson.fromJson(jsonResult.toString(), type);
     }
 }
