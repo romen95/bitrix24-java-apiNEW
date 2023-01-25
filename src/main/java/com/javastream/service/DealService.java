@@ -5,8 +5,10 @@ import com.google.gson.reflect.TypeToken;
 import com.javastream.entity.Contact;
 import com.javastream.entity.Deal;
 import com.javastream.entity.Lead;
+import com.javastream.entity.model.chat.User;
 import com.javastream.uriParamsCreator.UriParamsCreator;
 import com.javastream.utils.PushRunner;
+import com.javastream.utils.chat.ParamChatUtils;
 import com.javastream.utils.deal.ParamDealUtils;
 import com.javastream.utils.lead.ParamLeadUtils;
 import org.json.JSONArray;
@@ -55,11 +57,11 @@ public class DealService {
     public List<Contact> getContactFromDeal(Integer idDeal) {
         logger.info("Request: Get the deal by id: {}", idDeal);
         UriParamsCreator params = new ParamDealUtils().getMethod(idDeal);
-        JSONObject jsonMain = PushRunner.get(params, GET_CONTACT_METHOD);
-        JSONObject jsonResult = jsonMain.getJSONObject("result");
+        JSONObject json = PushRunner.get(params, GET_CONTACT_METHOD);
+        JSONArray result = json.getJSONArray("result");
         Gson gson = new Gson();
 
         Type type = new TypeToken<ArrayList<Contact>>(){}.getType();
-        return gson.fromJson(jsonResult.toString(), type);
+        return gson.fromJson(result.toString(), type);
     }
 }
