@@ -38,6 +38,9 @@ public class Deal {
     @SerializedName("STAGE_ID")
     private String stageId;
 
+    @SerializedName("STAGE_SEMANTIC_ID")
+    private String stageSemanticId;
+
     @SerializedName("PROBABILITY")
     private String probability;
 
