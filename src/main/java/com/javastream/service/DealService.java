@@ -2,6 +2,7 @@ package com.javastream.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.javastream.entity.Contact;
 import com.javastream.entity.Deal;
 import com.javastream.entity.Lead;
 import com.javastream.uriParamsCreator.UriParamsCreator;
@@ -29,6 +30,7 @@ public class DealService {
 
     private final static String GET_METHOD = "crm.deal.get";
     private final static String LIST_METHOD = "crm.deal.list";
+    private final static String GET_CONTACT_METHOD = "crm.deal.contact.items.get";
 
     public Deal get(Integer idDeal) {
         logger.info("Request: Get the deal by id: {}", idDeal);
@@ -48,5 +50,16 @@ public class DealService {
 
         Type type = new TypeToken<ArrayList<Deal>>(){}.getType();
         return gson.fromJson(result.toString(), type);
+    }
+
+    public List<String> getContactParams(Integer idDeal) {
+        logger.info("Request: Get the contact by deal's id: {}", idDeal);
+        UriParamsCreator params = new ParamDealUtils().getMethod(idDeal);
+        JSONObject jsonMain = PushRunner.get(params, GET_CONTACT_METHOD);
+        JSONObject jsonResult = jsonMain.getJSONObject("result");
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<ArrayList<String>>(){}.getType();
+        return gson.fromJson(jsonResult.toString(), type);
     }
 }
