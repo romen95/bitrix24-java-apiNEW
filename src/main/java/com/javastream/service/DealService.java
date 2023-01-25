@@ -28,7 +28,7 @@ public class DealService {
     private Logger logger = LoggerFactory.getLogger(DealService.class);
 
     private final static String GET_METHOD = "crm.deal.get";
-    private final static String LIST_METHOD = "crm.lead.list";
+    private final static String LIST_METHOD = "crm.deal.list";
 
     public Deal get(Integer idDeal) {
         logger.info("Request: Get the deal by id: {}", idDeal);
