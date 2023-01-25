@@ -3,6 +3,7 @@ package com.javastream.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.javastream.entity.Contact;
+import com.javastream.entity.ContactItem;
 import com.javastream.entity.Deal;
 import com.javastream.entity.Lead;
 import com.javastream.entity.model.chat.User;
@@ -54,14 +55,14 @@ public class DealService {
         return gson.fromJson(result.toString(), type);
     }
 
-    public List<Contact> getContactFromDeal(Integer idDeal) {
+    public List<ContactItem> getContactFromDeal(Integer idDeal) {
         logger.info("Request: Get the deal by id: {}", idDeal);
         UriParamsCreator params = new ParamDealUtils().getMethod(idDeal);
         JSONObject json = PushRunner.get(params, GET_CONTACT_METHOD);
         JSONArray result = json.getJSONArray("result");
         Gson gson = new Gson();
 
-        Type type = new TypeToken<ArrayList<Contact>>(){}.getType();
+        Type type = new TypeToken<ArrayList<ContactItem>>(){}.getType();
         return gson.fromJson(result.toString(), type);
     }
 }
