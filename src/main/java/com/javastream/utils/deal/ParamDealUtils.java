@@ -20,6 +20,12 @@ public class ParamDealUtils {
         return params;
     }
 
+    public UriParamsCreator getAllMethod() {
+        UriParamsCreator params = new UriParamsCreator();
+        params.build();
+        return params;
+    }
+
     private String check(String field) {
         if (field == null) {
             return SPACE_PARAM;
