@@ -26,7 +26,7 @@ public class ParamContactUtils {
     private final static String EXPORT = "FIELDS[EXPORT]";
     private final static String COMMENTS = "FIELDS[COMMENTS]";
     private final static String TYPE_ID = "FIELDS[TYPE_ID]";
-    private final static String PHONE = "SELECT[]";
+    private final static String SELECT = "SELECT[]";
 
 
 
@@ -58,7 +58,9 @@ public class ParamContactUtils {
 
     public UriParamsCreator getAllMethodWhisPhone() {
         UriParamsCreator params = new UriParamsCreator();
-        params.put(PHONE, "PHONE");
+        params.put(SELECT, "PHONE");
+        params.put(SELECT, "NAME");
+        params.put(SELECT, "LASTNAME");
         params.build();
         return params;
     }
