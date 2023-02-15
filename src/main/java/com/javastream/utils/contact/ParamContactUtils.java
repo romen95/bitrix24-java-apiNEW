@@ -47,6 +47,12 @@ public class ParamContactUtils {
         return params;
     }
 
+    public UriParamsCreator getAllMethod() {
+        UriParamsCreator params = new UriParamsCreator();
+        params.build();
+        return params;
+    }
+
     public UriParamsCreator updateMethod(Contact contact) throws UnsupportedEncodingException {
         UriParamsCreator params = createFieldsForUpdateMethod(contact);
         params.build();

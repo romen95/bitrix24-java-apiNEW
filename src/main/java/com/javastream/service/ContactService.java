@@ -1,15 +1,22 @@
 package com.javastream.service;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.javastream.entity.Contact;
+import com.javastream.entity.Deal;
 import com.javastream.uriParamsCreator.UriParamsCreator;
 import com.javastream.utils.PushRunner;
 import com.javastream.utils.contact.ParamContactUtils;
+import com.javastream.utils.deal.ParamDealUtils;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * ContactService.
@@ -23,6 +30,7 @@ public class ContactService {
     private final static String ADD_METHOD = "crm.contact.add";
     private final static String DELETE_METHOD = "crm.contact.delete";
     private final static String GET_METHOD = "crm.contact.get";
+    private final static String LIST_METHOD = "crm.contact.list";
     private final static String UPDATE_METHOD = "crm.contact.update";
     private final static String DELETE_FROM_COMPANY_METHOD = "crm.contact.company.delete";
 
@@ -50,6 +58,17 @@ public class ContactService {
         JSONObject jsonResult = jsonMain.getJSONObject("result");
         Gson gson = new Gson();
         return gson.fromJson(jsonResult.toString(), Contact.class);
+    }
+
+    public List<Contact> getAll() {
+        logger.info("Request: Get list of deals");
+        UriParamsCreator params = new ParamContactUtils().getAllMethod();
+        JSONObject json = PushRunner.get(params, LIST_METHOD);
+        JSONArray result = json.getJSONArray("result");
+        Gson gson = new Gson();
+
+        Type type = new TypeToken<ArrayList<Contact>>(){}.getType();
+        return gson.fromJson(result.toString(), type);
     }
 
     public void update(Contact contact) {
