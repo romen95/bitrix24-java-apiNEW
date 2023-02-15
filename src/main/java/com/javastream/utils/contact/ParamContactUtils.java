@@ -26,6 +26,9 @@ public class ParamContactUtils {
     private final static String EXPORT = "FIELDS[EXPORT]";
     private final static String COMMENTS = "FIELDS[COMMENTS]";
     private final static String TYPE_ID = "FIELDS[TYPE_ID]";
+    private final static String PHONE = "SELECT[]";
+
+
 
     public UriParamsCreator addMethod(Contact contact) throws UnsupportedEncodingException {
         UriParamsCreator params = createFieldsForAddMethod(contact);
@@ -49,6 +52,13 @@ public class ParamContactUtils {
 
     public UriParamsCreator getAllMethod() {
         UriParamsCreator params = new UriParamsCreator();
+        params.build();
+        return params;
+    }
+
+    public UriParamsCreator getAllMethodWhisPhone() {
+        UriParamsCreator params = new UriParamsCreator();
+        params.put(PHONE, "PHONE");
         params.build();
         return params;
     }

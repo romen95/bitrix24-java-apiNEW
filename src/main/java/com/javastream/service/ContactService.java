@@ -61,8 +61,8 @@ public class ContactService {
     }
 
     public List<Contact> getAll() {
-        logger.info("Request: Get list of deals");
-        UriParamsCreator params = new ParamContactUtils().getAllMethod();
+        logger.info("Request: Get list of contacts");
+        UriParamsCreator params = new ParamContactUtils().getAllMethodWhisPhone();
         JSONObject json = PushRunner.get(params, LIST_METHOD);
         JSONArray result = json.getJSONArray("result");
         Gson gson = new Gson();
