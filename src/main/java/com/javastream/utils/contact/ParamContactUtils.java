@@ -58,6 +58,7 @@ public class ParamContactUtils {
 
     public UriParamsCreator getAllMethodWhisPhone() {
         UriParamsCreator params = new UriParamsCreator();
+        params.put(SELECT, "ID");
         params.put(SELECT, "PHONE");
         params.put(SELECT, "NAME");
         params.put(SELECT, "LASTNAME");
